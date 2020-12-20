@@ -1,3 +1,3 @@
-Yarn Install
-cd ios && pod install
+Yarn Install </br>
+cd ios && pod install  </br>
 yarn ios 
