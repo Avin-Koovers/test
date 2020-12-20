@@ -1,0 +1,5 @@
+{
+  "name": "Bitfinix",
+  "displayName": "Bitfinix",
+  "WS_URL":"wss://api-pub.bitfinex.com/ws/2"
+}
