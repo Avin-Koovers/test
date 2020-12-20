@@ -4,6 +4,7 @@ import useWebSocket from '../common/utils/useWebSocket';
 import { useSelector } from 'react-redux';
 import TradeCardItem from './component/TradeCardItem';
 import TradeCardHeader from './component/TradeCardHeader';
+import { Spinner, Container } from 'native-base';
 
 const Trades = () => {
     const tradeHistory = useSelector(state=>state.trade.getIn(["tradeHistory"]))
@@ -12,10 +13,11 @@ const Trades = () => {
     
     tradeHistory.map(trade =>trades.unshift(trade))
     return (
-        <>
+        <Container style={{backgroundColor:"#273640"}}>
         <TradeCardHeader/>
-        { trades.length!==0 &&   <FlatList style={{backgroundColor:"#273640"}}  data={trades} renderItem={ trade  =>  <TradeCardItem props={{trade}} />} /> }
-        </>
+        {trades.length===0 &&<Spinner />}
+        { trades.length!==0 &&   <FlatList  data={trades} renderItem={ trade  =>  <TradeCardItem props={{trade}} />} /> }
+        </Container>
     );
 };
 

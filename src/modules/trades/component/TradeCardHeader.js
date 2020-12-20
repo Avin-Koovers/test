@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Grid, Col, Text, CardItem } from 'native-base';
 
 const TradeCardHeader = () => {
+    console.log("hello")
     return (
 
         <CardItem style={{ backgroundColor: "#1b262d", marginBottom: 1, height: 40 }}>
@@ -35,4 +36,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default TradeCardHeader;
+export default memo(TradeCardHeader) ;

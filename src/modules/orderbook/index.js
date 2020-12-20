@@ -1,10 +1,9 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
-import {  Grid, Col, Container } from 'native-base';
+import {  Grid, Col, Container, Spinner } from 'native-base';
 import useWebSocket from '../common/utils/useWebSocket';
 import { useSelector, useDispatch } from 'react-redux';
 import OrderbookCardItem from './component/OrderbookCardItem';
-import { ScrollView, View, StyleSheet } from 'react-native';
-import { closeSocket, openSocket } from '../common/actions/websocket';
+import { ScrollView } from 'react-native';
 import OrderbookCardHeader from './component/OrderbookCardHeader';
 let sumAsks=0;
 let sumBids=0;
@@ -52,6 +51,7 @@ const Orderbook = () => {
     return (
         <Container >
         <OrderbookCardHeader setPrecision={memoizedCallback} percision={percision} setBarDepthAmount={memoizedSetBarDepthAmount}/ >
+        {asks.size===0 &&<Spinner style={{backgroundColor:"#273640"}}/>}
              <Grid >              
                 <Col>
                     <ScrollView nestedScrollEnabled={true} style={{backgroundColor:'#273640'}}>

@@ -11,8 +11,6 @@ let batchRun;
 export default useWebSocket =  (messageObject,type,reload) => {
     const webSocket = useRef(null)
     const dispatch = useDispatch()
-    let tickerData = []
-    const socketState =  useSelector(state=>state.socket.getIn(['socket']))
 
     useEffect(() => {
         if(webSocket.current){
@@ -22,7 +20,6 @@ export default useWebSocket =  (messageObject,type,reload) => {
         webSocket.current.onopen = async event => {            
             const message = JSON.stringify(messageObject)
               webSocket.current.send(message);
-              console.log("opened")
         }
         webSocket.current.onmessage = event => {
             const data = JSON.parse(event.data)
@@ -34,7 +31,6 @@ export default useWebSocket =  (messageObject,type,reload) => {
                 }
             }else if(type==='orderbook'){
                 try {
-                    console.log(new Date())
                     if(data[1][1].length>1){
                         const orderbook = {asks:[],bids:[]}
                         data[1].map(order=>order[2]>0?orderbook.bids.push(order):orderbook.asks.push(order))
@@ -65,11 +61,5 @@ export default useWebSocket =  (messageObject,type,reload) => {
         return () => { webSocket.current.close();clearInterval(batchRun); };
     }, [reload]);
 
-    useEffect(()=>{
-        if(socketState===false){
-            console.log("closed")
-            webSocket.current.close()
-        }
-    },[socketState])
     return null
 }
