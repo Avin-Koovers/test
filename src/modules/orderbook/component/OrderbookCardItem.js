@@ -7,7 +7,7 @@ const getDepthData = (barDepthAmount,order,percision) =>{
     if(barDepthAmount){
         return parseInt(Math.abs(order[2])*multiplier["AMOUNT"]["BTC"][percision])
     }else{
-        return parseInt(order[3]* multiplier["BTC"][percision])
+        return parseInt(order[3]* multiplier["CUMULATIVE"]["BTC"][percision])
     }
 }
 
@@ -18,7 +18,7 @@ const OrderbookCardItem = memo((props ) => {
             
             {component === 'buy' && <Col>
             
-                <CardItem  style={styles.cardItem}>
+                <CardItem  style={styles.cardItem} >
                 <View style={{width:`${getDepthData(barDepthAmount,order,percision)}%`,height:"200%",backgroundColor:'rgba(0,128,100,0.5)',position:'absolute',right:"1%"}}></View>
                     <Col >
                     
